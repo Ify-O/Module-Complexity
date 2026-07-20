@@ -1,14 +1,24 @@
 def count_letters(s: str) -> int:
     """
-    count_letters returns the number of letters which only occur in upper case in the passed string.
+    Count the number of letters that appear only in uppercase.
+
+    Time Complexity: O(n)
+    Space Complexity: O(1)
     """
-    only_upper = set()
+
+    uppercase = set()
+    lowercase = set()
+
     for letter in s:
-        if is_upper_case(letter):
-            if letter.lower() not in s:
-                only_upper.add(letter)
-    return len(only_upper)
+        if letter.isupper():
+            uppercase.add(letter)
+        elif letter.islower():
+            lowercase.add(letter)
 
+    count = 0
 
-def is_upper_case(letter: str) -> bool:
-    return letter == letter.upper()
+    for letter in uppercase:
+        if letter.lower() not in lowercase:
+            count += 1
+
+    return count
